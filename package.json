@@ -1,0 +1,36 @@
+{
+  "name": "biomedic-webshop",
+  "version": "1.0.0",
+  "description": "SSR webshop",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzonib/webshop-nextjs-express.git"
+  },
+  "author": "Dzoni B",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dzonib/webshop-nextjs-express/issues"
+  },
+  "homepage": "https://github.com/dzonib/webshop-nextjs-express#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "next": "^8.0.3",
+    "pg": "^7.9.0",
+    "pg-hstore": "^2.3.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "sequelize": "^5.1.0",
+    "styled-components": "^4.1.3"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.0",
+    "nodemon": "^1.18.10"
+  }
+}
