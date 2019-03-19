@@ -1,5 +1,7 @@
+require('dotenv').config()
 const express = require("express")
 const next = require("next")
+const cookieParser = require('cookie-parser')
 
 const sequelize = require("./db/sequelize")
 const dev = process.env.NODE_ENV !== "production"
@@ -13,12 +15,14 @@ app.prepare().then(() => {
     const server = express()
 
     server.use(express.json())
+    // SIGN COOKIE SECRET (its in .env file)
+    server.use(cookieParser(process.env.COOKIE_SECRET))
+
+    // NOW THAT WE ADDED COOKIE PARSER AS MIDDLEWARE AND WE ADDED COOKIE SECRET
+    // WE CAN READ COOKIES FROM req.signedCookies()
  
     server.use('/api/user', userRoutes)
 
-    server.get('/test', (req, res) => {
-        res.json({bla: true})
-    })
 
     server.get("*", (req, res) => {
         return handle(req, res)
