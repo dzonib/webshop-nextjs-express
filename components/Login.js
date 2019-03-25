@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
+import Link from 'next/link'
 
 import { StyledLogin } from "../styles/StyledLogin"
 import { StyledButton } from "../styles/StyledButton"
@@ -32,6 +33,9 @@ export default function LoginComponent() {
 
     return (
         <StyledLogin>
+            <Link href="/register">
+                <a>Register</a>
+            </Link>
             <form onSubmit={submitHandler}>
                 <h1>Prijavi se</h1>
                 <label htmlFor="email">Emejl</label>

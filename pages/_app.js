@@ -1,28 +1,38 @@
-import React from 'react'
-import App, { Container } from 'next/app'
-import GlobalStyle from '../styles/global';
+import React from "react"
+import App, { Container } from "next/app"
+import NProgress from "nprogress"
+import Router from "next/router"
+
+import GlobalStyle from "../styles/global"
+
+Router.events.on("routeChangeStart", url => {
+    console.log(`Loading: ${url}`)
+    NProgress.start()
+})
+Router.events.on("routeChangeComplete", () => NProgress.done())
+Router.events.on("routeChangeError", () => NProgress.done())
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
+    static async getInitialProps({ Component, ctx }) {
+        let pageProps = {}
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
+        if (Component.getInitialProps) {
+            pageProps = await Component.getInitialProps(ctx)
+        }
+
+        return { pageProps }
     }
 
-    return { pageProps }
-  }
+    render() {
+        const { Component, pageProps } = this.props
 
-  render () {
-    const { Component, pageProps } = this.props
-
-    return (
-      <Container>
-        <Component {...pageProps} />
-        <GlobalStyle/>
-      </Container>
-    )
-  }
+        return (
+            <Container>
+                <Component {...pageProps} />
+                <GlobalStyle />
+            </Container>
+        )
+    }
 }
 
 export default MyApp

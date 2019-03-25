@@ -31,9 +31,10 @@ router.post(
             }
             if (user) {
                 // CUSTOM ERROR VALIDATION REJECTION
-                return Promise.reject(
-                    "Korisnik sa tim emejlom je već registrovan."
-                )
+                // return Promise.reject(
+                //     "Korisnik sa tim emejlom je već registrovan."
+                // ).catch(e => console.log(e.message))
+                throw new Error('User registered')
             }
 
             console.log(errors)

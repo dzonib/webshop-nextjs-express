@@ -36,6 +36,7 @@ export default class MyDocument extends Document {
                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                     <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
                     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,700i" rel="stylesheet"></link>
+                    <link rel="stylesheet" type="text/css" href="/static/nprogress.css"/>
                 </Head>
                 <body>
                     <Main />
