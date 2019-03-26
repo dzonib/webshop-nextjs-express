@@ -31,13 +31,13 @@ router.post(
             }
             if (user) {
                 // CUSTOM ERROR VALIDATION REJECTION
-                // return Promise.reject(
-                //     "Korisnik sa tim emejlom je već registrovan."
-                // ).catch(e => console.log(e.message))
-                throw new Error('User registered')
+                if (user) {
+                    return Promise.reject('Korisnik sa navedenim emailom već registrovan')
+                      .catch(e => res.json(e))
+                }
             }
 
-            console.log(errors)
+            
             const hashedPassword = await bcrypt.hash(password, 10)
 
             const newUser = await User.create({
@@ -70,7 +70,7 @@ router.post(
             if (!userCheck) {
                 return Promise.reject(
                     "Korisnik sa tim emejlom nije registrovan"
-                )
+                ).catch(e => res.json(e))
             }
 
             const passwordCheck = await bcrypt.compare(password, userCheck.password)

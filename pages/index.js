@@ -1,8 +1,9 @@
+import Landing from "../components/Landing";
 
 export default function Index() {
     return (
-        <>
-            <div>Hi from index</div>
-        </>
+        <div>
+            <Landing />
+        </div>
     )
 }

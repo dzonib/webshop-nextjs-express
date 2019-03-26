@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/dzonib/webshop-nextjs-express#readme",
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.10.17",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",
@@ -31,6 +32,7 @@
     "pg-hstore": "^2.3.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-slick": "^0.23.2",
     "sequelize": "^5.1.0",
     "styled-components": "^4.1.3"
   },

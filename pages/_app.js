@@ -4,6 +4,7 @@ import NProgress from "nprogress"
 import Router from "next/router"
 
 import GlobalStyle from "../styles/global"
+import Header from "../components/Header";
 
 Router.events.on("routeChangeStart", url => {
     console.log(`Loading: ${url}`)
@@ -28,6 +29,7 @@ class MyApp extends App {
 
         return (
             <Container>
+                <Header />
                 <Component {...pageProps} />
                 <GlobalStyle />
             </Container>
