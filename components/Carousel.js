@@ -1,19 +1,23 @@
 import React from 'react'
-import Slider from 'react-slick'
-
+import Slider from "react-slick"
 import { StyledImg } from '../styles/StyledImage'
 
 
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1
-};
-
-
 export default function CarouselComponent() {
+
+  var settings = {
+    // arrows: true,
+    // dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3900,
+    speed: 2200,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    fade: true,
+    centerPadding: '0px'
+    // accessibility: true,
+  };
 
   return (
     <Slider {...settings}>

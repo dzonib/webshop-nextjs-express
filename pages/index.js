@@ -1,9 +1,11 @@
-import Landing from "../components/Landing";
+import Landing from "../components/Landing"
+import Slider from "../components/Carousel"
 
 export default function Index() {
     return (
         <div>
-            <Landing />
+            {/* <Landing /> */}
+            <Slider />
         </div>
     )
 }

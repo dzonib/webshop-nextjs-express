@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 
 export const StyledImg = styled.img`
-  width: 100%;
+  width: 400px;
   height: 75vh;
+
 `
