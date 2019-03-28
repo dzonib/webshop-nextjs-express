@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+    :root {
+        --btnBackground: #5f9ea0;
+        --transition: all 0.2s;
+    }
+
     html {
         box-sizing: border-box;
         font-size: 10px;

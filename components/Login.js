@@ -33,26 +33,25 @@ export default function LoginComponent() {
 
     return (
         <StyledLogin>
-            <Link href="/register">
-                <a>Register</a>
-            </Link>
+
             <form onSubmit={submitHandler}>
-                <h1>Prijavi se</h1>
-                <label htmlFor="email">Emejl</label>
+                <h1>Login</h1>
+                <hr/>
+                <label htmlFor="email">Email</label>
                 <input
                     type="text"
                     id="email"
                     name="email"
                     onChange={changeHandler}
                 />
-                <label htmlFor="password">Šifra</label>
+                <label htmlFor="password">Password</label>
                 <input
                     type="text"
                     id="password"
                     name="password"
                     onChange={changeHandler}
                 />
-                <StyledButton>Prijavi se</StyledButton>
+                <StyledButton>Login</StyledButton>
             </form>
         </StyledLogin>
     )

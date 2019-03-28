@@ -19,6 +19,11 @@ export default function Header() {
           </Link>
         </li>
         <li>
+          <Link href='/profile'>
+            <a>Profile</a>
+          </Link>
+        </li>
+        <li>
           <Link href='/products'>
             <a>Web Shop</a>
           </Link>
@@ -36,6 +41,16 @@ export default function Header() {
         <li>
           <Link href='/contact'>
             <a>Contact</a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/register'>
+            <a>Register</a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/login'>
+            <a>Login</a>
           </Link>
         </li>
       </StyledNav>

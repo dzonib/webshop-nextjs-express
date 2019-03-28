@@ -3,8 +3,11 @@ import App, { Container } from "next/app"
 import NProgress from "nprogress"
 import Router from "next/router"
 
+
 import GlobalStyle from "../styles/global"
-import Header from "../components/Header";
+import Header from "../components/Header"
+
+
 
 Router.events.on("routeChangeStart", url => {
     console.log(`Loading: ${url}`)

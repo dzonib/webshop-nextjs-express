@@ -1,13 +1,20 @@
 import styled from 'styled-components'
 
 export const StyledLogin = styled.div`
+    hr {
+        margin-bottom: 50px;
+    }
+    h1 {
+        font-style: italic;
+        margin-bottom: 0;
+    }
     display: grid;
     max-width: 1000px;
     margin: 0 auto;
     justify-content: center;
     label {
         display: block;
-        font-size: 2rem;
+        font-size: 2.2rem;
         font-style: italic;
         padding-left: 10px;
     }
@@ -20,6 +27,7 @@ export const StyledLogin = styled.div`
             width: 200px;
             margin-bottom: 5px;
         }
+        outline-color: pink;
     }
 
 

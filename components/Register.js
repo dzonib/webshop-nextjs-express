@@ -29,47 +29,46 @@ export default function RegisterComponent() {
 
     return (
         <StyledRegister>
-            <Link href="/login">
-                <a>Login</a>
-            </Link>
+
             <form onSubmit={submitHandler}>
-                <h1>Registracija</h1>
-                <label htmlFor="name">Ime</label>
+                <h1>Register</h1>
+                <hr/>
+                <label htmlFor="name">Name</label>
                 <input
                     type="text"
                     id="name"
                     name="name"
                     onChange={e => setName(e.target.value)}
                 />
-                <label htmlFor="email">Emejl</label>
+                <label htmlFor="email">Email</label>
                 <input
                     type="email"
                     id="email"
                     name="email"
                     onChange={e => setEmail(e.target.value)}
                 />
-                <label htmlFor="address">Adresa</label>
+                <label htmlFor="address">Address</label>
                 <input
                     type="text"
                     id="address"
                     name="address"
                     onChange={e => setAddress(e.target.value)}
                 />
-                <label htmlFor="password">Šifra</label>
+                <label htmlFor="password">Password</label>
                 <input
                     type="password"
                     id="password"
                     name="password"
                     onChange={e => setPassword(e.target.value)}
                 />
-                <label htmlFor="password2">Ponovite šifru</label>
+                <label htmlFor="password2">Reapeat Password</label>
                 <input
-                    type="passwrod"
+                    type="password"
                     id="password2"
                     name="password2"
                     onChange={e => setPassword2(e.target.value)}
                 />
-                <StyledButton>Registruj se</StyledButton>
+                <StyledButton>Register</StyledButton>
             </form>
         </StyledRegister>
     )
