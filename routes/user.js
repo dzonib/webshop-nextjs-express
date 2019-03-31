@@ -1,56 +1,43 @@
 const express = require("express")
 const bcrypt = require("bcryptjs")
-const {check, validationResult} = require("express-validator/check")
 
 const User = require("../db/models/User")
+const registerValidation = require("../validation/register")
+const loginValidation = require("../validation/login")
+
 const router = express.Router()
 
 // REGISTER
-router.post("/register", [
-    check("name", "Name must be at lest 2 charachters long")
-        .trim()
-        .isLength({min: 2}),
-    check("password", "Password must be at least 5 characthers long")
-        .trim()
-        .isLength({min: 5}),
-    check("email", "Please enter valid email")
-        .trim()
-        .isEmail()
-], async(req, res) => {
-    const {name, email, password, password2, address} = req.body
+router.post("/register", async (req, res) => {
+    const { name, surname, email, password, address } = req.body
+
+    const { isValid, errors } = registerValidation(req.body)
+
+    if (!isValid) {
+        res.status(403).json(errors)
+    }
+
     try {
-        const user = await User.findOne({where: {
+        const user = await User.findOne({
+            where: {
                 email
-            }})
-
-        const errors = validationResult(req)
-
-        if (!errors.isEmpty()) {
-            return res
-                .status(403)
-                .json({
-                    errors: errors.mapped()
-                })
-        }
+            }
+        })
 
         if (user) {
-            // CUSTOM ERROR VALIDATION REJECTION
-            if (user) {
-                return Promise
-                    .reject('User with that email already registered')
-                    .catch(e => res.json(e))
-            }
-        }
-
-        if (password !== password2) {
-            return Promise
-                .reject('Passwords and Password2 do not match')
-                .catch(e => res.json(e))
+            errors.email = "User with this email is already registered"
+            res.status(403).json(errors)
         }
 
         const hashedPassword = await bcrypt.hash(password, 10)
 
-        const newUser = await User.create({name, address, email, password: hashedPassword})
+        const newUser = await User.create({
+            name,
+            surname,
+            address,
+            email,
+            password: hashedPassword
+        })
 
         res.json(newUser)
     } catch (e) {
@@ -59,29 +46,33 @@ router.post("/register", [
 })
 
 // LOGIN
-router.post("/login", [
-    check("email", "Please enter a valid email address.")
-        .trim()
-        .isEmail()
-], async(req, res) => {
-    const {email, password} = req.body
+router.post("/login", async (req, res) => {
+    const { email, password } = req.body
+
+    const { errors, isValid } = loginValidation(req.body)
+
+    if (!isValid) {
+        res.status(403).json(errors)
+    }
+
     try {
-        const userCheck = await User.findOne({where: {
+        const userCheck = await User.findOne({
+            where: {
                 email
-            }})
+            }
+        })
 
         if (!userCheck) {
-            // return Promise.reject(     "Invalid email or password" ).catch(e =>
-            // res.json(e))
-            return res
-                .status(403)
-                .send('Invalid email or password')
+            errors.email("User with that email is not registered")
+            res.status(403).json(errors)
         }
 
         const passwordCheck = await bcrypt.compare(password, userCheck.password)
 
         if (!passwordCheck) {
-            return Promise.reject("Wrong email or password")
+            errors.email = "Wrong password or email address"
+            errors.password = "Wrong password or email address"
+            res.status(403).json(errors)
         }
 
         const userPayload = {
@@ -89,20 +80,20 @@ router.post("/login", [
             email: userCheck.email,
             name: userCheck.name,
             address: userCheck.address,
-            type: 'authenticated',
+            type: "authenticated"
         }
 
         const COOKIE_OPTIONS = {
             // domain: "", prevent access from client
             httpOnly: true,
             // only https
-            secure: process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === "production",
             // we can verify the source of the cookie
             signed: true
         }
 
         // name, payload, options
-        res.cookie('token', userPayload, COOKIE_OPTIONS)
+        res.cookie("token", userPayload, COOKIE_OPTIONS)
 
         res.json(userPayload)
     } catch (e) {
@@ -111,17 +102,15 @@ router.post("/login", [
 })
 
 // GET USERS PROFILE
-router.get('/profile', async (req, res) => {
+router.get("/profile", async (req, res) => {
     try {
         // cookie is automatically passed by axios and it needs to have default value
         // (empty object) if user is not authorized
 
         // console.log(req.signedCookies.token)
-        const {
-            signedCookies = {}
-        } = req
+        const { signedCookies = {} } = req
 
-        const {token} = signedCookies
+        const { token } = signedCookies
 
         console.log(token)
 

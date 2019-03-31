@@ -7,6 +7,7 @@ import axios from "axios"
 
 export default function RegisterComponent() {
     const [name, setName] = useState("")
+    const [surname, setSurname] = useState("")
     const [email, setEmail] = useState("")
     const [address, setAddress] = useState("")
     const [password, setPassword] = useState("")
@@ -18,7 +19,7 @@ export default function RegisterComponent() {
         try {
             const { data } = await axios.post(
                 "http://localhost:3000/api/user/register",
-                { name, email, address, password, password2 }
+                { name, surname, email, address, password, password2 }
             )
 
             console.log(data)
@@ -39,6 +40,13 @@ export default function RegisterComponent() {
                     id="name"
                     name="name"
                     onChange={e => setName(e.target.value)}
+                />
+                <label htmlFor="surname">Surname</label>
+                <input
+                    type="text"
+                    id="surname"
+                    name="surname"
+                    onChange={e => setSurname(e.target.value)}
                 />
                 <label htmlFor="email">Email</label>
                 <input
