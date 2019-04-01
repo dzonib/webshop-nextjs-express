@@ -13,16 +13,24 @@ export const StyledLogin = styled.div`
     margin: 0 auto;
     justify-content: center;
     label {
+        text-transform: capitalize;
         display: block;
         font-size: 2.2rem;
         font-style: italic;
         padding-left: 10px;
+        margin-top: 15px;
     }
     input {
+        outline: none;
+        border-bottom: 1px solid #d6d4d4;
         width: 500px;
         height: 2rem;
         font-size: 1.6rem;
-        margin-bottom: 20px;
+        background: #f1f1f1;
+        &:focus {
+            background: #fff;
+        }
+
         @media(max-width: 600px) {
             width: 200px;
             margin-bottom: 5px;

@@ -4,52 +4,46 @@ import Link from 'next/link'
 
 import { StyledLogin } from "../styles/StyledLogin"
 import { StyledButton } from "../styles/StyledButton"
+import InputAndLabel from "./InputAndLabel";
 
 export default function LoginComponent() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [errors, setErrors] = useState({})
 
-    function changeHandler(e) {
-        switch (e.target.name) {
-            case "email":
-                return setEmail(e.target.value)
-            case "password":
-                return setPassword(e.target.value)
-            default:
-                return ""
-        }
-    }
 
     async function submitHandler(e) {
         e.preventDefault()
 
-        const {data} = await axios.post("http://localhost:3000/api/user/login", {
-            email,
-            password
-        })
-
-        console.log(data)
+        try {
+            const {data} = await axios.post("http://localhost:3000/api/user/login", {
+                email,
+                password
+            })
+    
+            console.log(data)
+        } catch(e) {
+            setErrors(e.response.data)
+            console.log(e.response.data)
+        }
     }
 
     return (
         <StyledLogin>
-
             <form onSubmit={submitHandler}>
                 <h1>Login</h1>
                 <hr/>
-                <label htmlFor="email">Email</label>
-                <input
+                <InputAndLabel 
                     type="text"
-                    id="email"
                     name="email"
-                    onChange={changeHandler}
+                    setValue={setEmail}
+                    errors={errors.email}
                 />
-                <label htmlFor="password">Password</label>
-                <input
+                <InputAndLabel 
                     type="text"
-                    id="password"
                     name="password"
-                    onChange={changeHandler}
+                    setValue={setPassword}
+                    errors={errors.password}
                 />
                 <StyledButton>Login</StyledButton>
             </form>

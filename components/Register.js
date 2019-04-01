@@ -4,6 +4,7 @@ import { StyledButton } from "../styles/StyledButton"
 import Link from 'next/link'
 
 import axios from "axios"
+import InputAndLabel from "./InputAndLabel"
 
 export default function RegisterComponent() {
     const [name, setName] = useState("")
@@ -12,6 +13,7 @@ export default function RegisterComponent() {
     const [address, setAddress] = useState("")
     const [password, setPassword] = useState("")
     const [password2, setPassword2] = useState("")
+    const [errors, setErrors] = useState({})
 
     async function submitHandler(e) {
         e.preventDefault()
@@ -24,7 +26,7 @@ export default function RegisterComponent() {
 
             console.log(data)
         } catch (e) {
-            console.log(e.response.data)
+            setErrors(e.response.data)
         }
     }
 
@@ -34,47 +36,48 @@ export default function RegisterComponent() {
             <form onSubmit={submitHandler}>
                 <h1>Register</h1>
                 <hr/>
-                <label htmlFor="name">Name</label>
+                {/* <label htmlFor="name">Name</label>
                 <input
                     type="text"
                     id="name"
                     name="name"
                     onChange={e => setName(e.target.value)}
-                />
-                <label htmlFor="surname">Surname</label>
-                <input
+                /> */}
+                <InputAndLabel 
                     type="text"
-                    id="surname"
+                    name="name"
+                    setValue={setName}
+                    errors={errors.name}
+                />
+                <InputAndLabel 
+                    type="text"
                     name="surname"
-                    onChange={e => setSurname(e.target.value)}
+                    setValue={setSurname}
+                    errors={errors.surname}
                 />
-                <label htmlFor="email">Email</label>
-                <input
+                <InputAndLabel 
                     type="email"
-                    id="email"
                     name="email"
-                    onChange={e => setEmail(e.target.value)}
+                    setValue={setEmail}
+                    errors={errors.email}
                 />
-                <label htmlFor="address">Address</label>
-                <input
+                <InputAndLabel 
                     type="text"
-                    id="address"
                     name="address"
-                    onChange={e => setAddress(e.target.value)}
+                    setValue={setAddress}
+                    errors={errors.address}
                 />
-                <label htmlFor="password">Password</label>
-                <input
+                <InputAndLabel 
                     type="password"
-                    id="password"
                     name="password"
-                    onChange={e => setPassword(e.target.value)}
+                    setValue={setPassword}
+                    errors={errors.password}
                 />
-                <label htmlFor="password2">Reapeat Password</label>
-                <input
+                <InputAndLabel 
                     type="password"
-                    id="password2"
                     name="password2"
-                    onChange={e => setPassword2(e.target.value)}
+                    setValue={setPassword2}
+                    errors={errors.password2}
                 />
                 <StyledButton>Register</StyledButton>
             </form>

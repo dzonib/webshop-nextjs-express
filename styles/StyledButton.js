@@ -7,12 +7,11 @@ export const StyledButton = styled.button`
     border-radius: 7px;
     height: 40px;
     font-size: 1.9rem;
-    margin: 10px auto;
+    margin: 30px auto;
     font-style: bold;
     display: block;
     background: var(--btnBackground);
     color: white;
-
 
 
     &:focus {
