@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
     :root {
-        --btnBackground: #5f9ea0;
+        --btnBackground: #54A1B2;
         --transition: all 0.2s;
     }
 
@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
         }
 
     }
+    
     body {
         font-family: 'Lora', serif;
         font-size: 1.6rem;

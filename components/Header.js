@@ -38,7 +38,7 @@ export default function Header() {
             <a>About</a>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href='/contact'>
             <a>Contact</a>
           </Link>
@@ -52,7 +52,7 @@ export default function Header() {
           <Link href='/login'>
             <a>Login</a>
           </Link>
-        </li>
+        </li> */}
       </StyledNav>
       {/* <StyledHamburgerMenu /> */}
     </StyledHeader>
