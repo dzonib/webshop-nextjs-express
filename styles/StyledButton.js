@@ -22,8 +22,8 @@ export const StyledButton = styled.button`
     &:hover {
         color: #E3D7C3;
         transition: var(--transition);
-        transform: translateY(-1px);
-        box-shadow: 3px 5px 9px -1px rgba(95,158,160,1);
+        transform: ${props => props.loading ? 'none' : 'translateY(-1px)'};
+        box-shadow:  ${props => props.loading ? 'none' : '3px 5px 9px -1px rgba(95,158,160,1)'};
     }
 
     &:active {

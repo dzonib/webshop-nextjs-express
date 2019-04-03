@@ -32,9 +32,9 @@ class MyApp extends App {
 
         return (
             <Container>
-                <Header />
-                <Component {...pageProps} />
-                <GlobalStyle />
+                    <Header />
+                    <Component {...pageProps} />
+                    <GlobalStyle />
             </Container>
         )
     }

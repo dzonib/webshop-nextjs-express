@@ -63,7 +63,7 @@ router.post("/login", async (req, res) => {
         })
 
         if (!userCheck) {
-            errors.email("User with that email is not registered")
+            errors.email = "User with that email is not registered"
             res.status(403).json(errors)
         }
 
@@ -112,20 +112,11 @@ router.get("/profile", async (req, res) => {
 
         const { token } = signedCookies
 
-        console.log(token)
-
         if (token && token.email) {
-            console.log(token)
 
-            const user = await User.findOne({
-                where: {
-                    email: token.email
-                }
-            })
-
-            return res.json(user)
+            return res.json(token)
         }
-        res.sendStatus(404)
+        res.status(404).json("Not authenticated!")
     } catch (e) {
         console.log(e.message)
     }
